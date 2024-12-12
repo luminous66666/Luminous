@@ -181,66 +181,51 @@
         <p>&copy; 2024 Luminous. All rights reserved.</p>
     </footer>
     <script>
-    // Fade-in + Typewriter Effect
-    const fadeInElements = document.querySelectorAll('#hero h1, #hero p, .cta-btn');
+// Fade-in + Typewriter Effect
+const fadeInElements = document.querySelectorAll('#hero h1, #hero p, .cta-btn');
 
-    const fadeInObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                if (!entry.target.dataset.typed) { // Prevent re-typing if already typed
-                    typewriterEffect(entry.target);
-                    entry.target.dataset.typed = "true"; // Mark as typed
-                }
-                fadeInObserver.unobserve(entry.target); // Stop observing after fade-in
-            }
-        });
-    });
-
-    fadeInElements.forEach((element) => {
-        element.style.opacity = '0'; // Initial state
-        element.style.transform = 'translateY(50px)'; // Initial offset
-        fadeInObserver.observe(element);
-    });
-
-    function typewriterEffect(element) {
-        const text = element.dataset.text || element.textContent.trim(); // Save original text
-        element.dataset.text = text; // Store original text
-        element.textContent = ''; // Clear the text before typing
-        let i = 0;
-        const speed = 50; // Adjust typing speed here (in ms)
-
-        function typeWriter() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
+const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            if (!entry.target.dataset.typed) { // Prevent re-typing if already typed
+                typewriterEffect(entry.target, () => {
+                    fadeInObserver.unobserve(entry.target); // Unobserve after typing
+                });
+                entry.target.dataset.typed = "true"; // Mark as typed
             }
         }
+    });
+});
 
-        typeWriter();
+fadeInElements.forEach((element) => {
+    element.style.opacity = '0'; // Initial state
+    element.style.transform = 'translateY(50px)'; // Initial offset
+    fadeInObserver.observe(element);
+});
+
+function typewriterEffect(element, callback) {
+    const text = element.dataset.text || element.textContent.trim(); // Save original text
+    element.dataset.text = text; // Store original text
+    element.textContent = ''; // Clear the text before typing
+    let i = 0;
+    const speed = 50; // Typing speed in ms
+
+    function typeWriter() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else if (callback) {
+            callback(); // Invoke callback after typing
+        }
     }
 
-    // Scroll Animation
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const title = document.querySelector('#hero h1');
-        const subtitle = document.querySelector('#hero p');
-        const heroSection = document.querySelector('#hero');
+    typeWriter();
+}
 
-        const titleDistance = scrollPosition / 3;
-        const titleOpacity = Math.max(1 - titleDistance / 50, 0);
-        title.style.opacity = titleOpacity;
-        title.style.transform = `translateY(-${titleDistance}px)`;
-
-        const subtitleDistance = scrollPosition / 2;
-        const subtitleOpacity = Math.max(1 - subtitleDistance / 50, 0);
-        subtitle.style.opacity = subtitleOpacity;
-        subtitle.style.transform = `translateY(-${subtitleDistance}px)`;
-
-        heroSection.style.opacity = titleOpacity;
-    });
 
     // Register Service Worker
     if ('serviceWorker' in navigator) {

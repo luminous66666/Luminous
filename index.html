@@ -7,6 +7,7 @@
 
     <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
 
     <!-- Style -->
     <style>
@@ -252,5 +253,17 @@
             heroSection.style.opacity = titleOpacity; // Make the background fade with the title
         });
     </script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("service-worker.js")
+      .then((registration) => {
+        console.log("Service Worker registered with scope:", registration.scope);
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  }
+</script>
 </body>
 </html>

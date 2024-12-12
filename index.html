@@ -155,15 +155,15 @@
 
 <body>
     <div id="hero">
-        <h1>Welcome</h1>
-        <h1>I am Luminous</h1>
-        <p>Bringing Animation to Life</p>
-        <a href="animations.html" class="cta-btn">Explore</a>
+        <h1 class="typewriter">Welcome</h1>
+        <h1 class="typewriter">I am Luminous</h1>
+        <p class="typewriter">Bringing Animation to Life</p>
+        <a href="animations.html" class="cta-btn typewriter">Explore</a>
     </div>
 
     <section id="aboutme">
         <div class="container">
-            <img src="icons/luminous.jpeg">
+            <img src="icons/luminous.jpeg" alt="Luminous">
             <h2>About Me</h2>
             <p>Hi. I'm Luminous, a passionate animator with a love for bringing ideas to life through creative animation. I do 3D animation with mostly Blender, but occasionally Mineimator. I'm thrilled that you found my website, and I am excited for you to start your journey and discover what animation really means to the world, and to me.</p>
         </div>
@@ -181,52 +181,72 @@
         <p>&copy; 2024 Luminous. All rights reserved.</p>
     </footer>
     <script>
-// Fade-in + Typewriter Effect
-const fadeInElements = document.querySelectorAll('#hero h1, #hero p, .cta-btn');
+    // Fade-in + Typewriter Effect
+    function setupTypewriter(t) {
+        var HTML = t.innerHTML;
+        t.innerHTML = "";
+        var cursorPosition = 0,
+            tag = "",
+            writingTag = false,
+            tagOpen = false,
+            typeSpeed = 50,
+            tempTypeSpeed = 0;
 
-const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            
-            if (!entry.target.dataset.typed) { // Prevent re-typing if already typed
-                typewriterEffect(entry.target, () => {
-                    fadeInObserver.unobserve(entry.target); // Unobserve after typing
-                });
-                entry.target.dataset.typed = "true"; // Mark as typed
+        var type = function () {
+            if (writingTag === true) {
+                tag += HTML[cursorPosition];
             }
-        }
-    });
-});
 
-fadeInElements.forEach((element) => {
-    element.style.opacity = '0'; // Initial state
-    element.style.transform = 'translateY(50px)'; // Initial offset
-    fadeInObserver.observe(element);
-});
+            if (HTML[cursorPosition] === "<") {
+                tempTypeSpeed = 0;
+                if (tagOpen) {
+                    tagOpen = false;
+                    writingTag = true;
+                } else {
+                    tag = "";
+                    tagOpen = true;
+                    writingTag = true;
+                    tag += HTML[cursorPosition];
+                }
+            }
+            if (!writingTag && tagOpen) {
+                tag.innerHTML += HTML[cursorPosition];
+            }
+            if (!writingTag && !tagOpen) {
+                if (HTML[cursorPosition] === " ") {
+                    tempTypeSpeed = 0;
+                } else {
+                    tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                }
+                t.innerHTML += HTML[cursorPosition];
+            }
+            if (writingTag === true && HTML[cursorPosition] === ">") {
+                tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                writingTag = false;
+                if (tagOpen) {
+                    var newSpan = document.createElement("span");
+                    t.appendChild(newSpan);
+                    newSpan.innerHTML = tag;
+                    tag = newSpan.firstChild;
+                }
+            }
 
-function typewriterEffect(element, callback) {
-    const text = element.dataset.text || element.textContent.trim(); // Save original text
-    element.dataset.text = text; // Store original text
-    element.textContent = ''; // Clear the text before typing
-    let i = 0;
-    const speed = 50; // Typing speed in ms
+            cursorPosition += 1;
+            if (cursorPosition < HTML.length - 1) {
+                setTimeout(type, tempTypeSpeed);
+            }
+        };
 
-    function typeWriter() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        } else if (callback) {
-            callback(); // Invoke callback after typing
-        }
+        return {
+            type: type
+        };
     }
 
-    typeWriter();
-}
-
-
+    // Applying typewriter effect to all elements with class 'typewriter'
+    document.querySelectorAll('.typewriter').forEach(element => {
+        var typewriter = setupTypewriter(element);
+        typewriter.type();
+    });
 
     // Register Service Worker
     if ('serviceWorker' in navigator) {
@@ -234,7 +254,7 @@ function typewriterEffect(element, callback) {
             .then(() => console.log('Service Worker Registered'))
             .catch(error => console.error('Service Worker Registration Failed:', error));
     }
-</script>
+    </script>
 
 </body>
 </html>

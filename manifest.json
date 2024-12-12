@@ -1,0 +1,21 @@
+{
+  "name": "Luminous Animations",
+  "short_name": "Luminous",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "A collection of my animations with thumbnails and downloads. Stream your favourite animations anywhere, anytime, without wifi.",
+  "icons": [
+    {
+      "src": "icons/luminous.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "icons/luminous.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

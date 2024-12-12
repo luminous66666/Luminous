@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icons/luminous.jpeg" type="image/jpeg">
+
     <!-- Style -->
     <style>
         /* General Reset */
@@ -17,6 +18,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #1c1c1c;
@@ -26,25 +28,30 @@
             padding: 0;
             scroll-behavior: smooth;
         }
+
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             color: #ffffff;
             text-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
         }
+
         a {
             text-decoration: none;
             color: #00aaff;
             transition: color 0.3s;
         }
+
         a:hover {
             color: #0088cc;
         }
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
         #hero {
             height: 80vh;
             background: url('https://cdn.glitch.global/4dbff7fd-b120-4baa-a5c9-590498f4a28a/_8c47d036-2631-4bd5-b9fd-6a558fb40d91.jpg?v=1729458146495') center center/cover no-repeat;
@@ -59,21 +66,25 @@
             opacity: 1;
             transition: opacity 1s ease-in-out;
         }
+
         #hero h1, #hero p, .cta-btn {
             opacity: 1;
             transform: translateY(0);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
+
         #hero h1 {
             font-size: 3.5em;
             margin-bottom: 10px;
             position: relative;
             z-index: 2;
         }
+
         #hero p {
             font-size: 1.5em;
             margin-bottom: 20px;
         }
+
         .cta-btn {
             background-color: #00aaff;
             color: #fff;
@@ -88,10 +99,12 @@
             z-index: 2;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         .cta-btn:hover {
             background-color: #0088cc;
             transform: scale(1.05);
         }
+
         #aboutme {
             background-color: #141414;
             text-align: center;
@@ -101,33 +114,40 @@
             align-items: center;
             height: 80vh;
         }
+
         #aboutme img {
             border-radius: 50%;
             width: 150px;
             height: 150px;
             margin-bottom: 20px;
         }
+
         #aboutme h2 {
             font-size: 2.5em;
             margin-bottom: 20px;
         }
+
         #aboutme p {
             font-size: 1.2em;
         }
+
         #joinme {
             background-color: #232323;
             text-align: center;
             padding: 60px 0;
         }
+
         #joinme h2 {
             font-size: 2.5em;
             margin-bottom: 40px;
         }
+
         .social-btns {
             display: flex;
             justify-content: center;
             gap: 20px;
         }
+
         .social-btn {
             background-color: #00aaff;
             color: #fff;
@@ -138,51 +158,54 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .social-btn:hover {
             background-color: #0088cc;
         }
+
         footer {
             background-color: #111;
             color: white;
             padding: 20px;
             text-align: center;
         }
+
         footer p {
             margin: 0;
         }
     </style>
 </head>
-
 <body>
     <div id="hero">
-        <h1 data-text="Welcome">Welcome</h1>
-        <h1 data-text="I am Luminous">I am Luminous</h1>
-        <p data-text="Bringing Animation to Life">Bringing Animation to Life</p>
-        <a href="animations.html" class="cta-btn" data-text="Explore">Explore</a>
+        <h1>Welcome</h1>
+        <h1>I am Luminous</h1>
+        <p>Bringing Animation to Life</p>
+        <a href="animations.html" class="cta-btn">Explore</a>
     </div>
 
     <section id="aboutme">
         <div class="container">
-            <img src="icons/luminous.jpeg">
-            <h2 data-text="About Me">About Me</h2>
-            <p data-text="Hi. I'm Luminous, a passionate animator with a love for bringing ideas to life through creative animation. I do 3D animation with mostly Blender, but occasionally Mineimator. I'm thrilled that you found my website, and I am excited for you to start your journey and discover what animation really means to the world, and to me.">Hi. I'm Luminous, a passionate animator with a love for bringing ideas to life through creative animation. I do 3D animation with mostly Blender, but occasionally Mineimator. I'm thrilled that you found my website, and I am excited for you to start your journey and discover what animation really means to the world, and to me.</p>
+            <img src="icons/luminous.jpeg" alt="Luminous">
+            <h2>About Me</h2>
+            <p>Hi. I'm Luminous, a passionate animator with a love for bringing ideas to life through creative animation. I do 3D animation with mostly Blender, but occasionally Mineimator. I'm thrilled that you found my website, and I am excited for you to start your journey and discover what animation really means to the world, and to me.</p>
         </div>
     </section>
 
     <section id="joinme">
-        <h2 data-text="Join Me">Join Me</h2>
+        <h2>Join Me</h2>
         <div class="social-btns">
-            <a href="https://www.youtube.com/@Lumin0us6_mc" class="social-btn" data-text="YouTube">YouTube</a>
-            <a href="https://discord.com" class="social-btn" data-text="Discord">Discord</a>
+            <a href="https://www.youtube.com/@Lumin0us6_mc" class="social-btn">YouTube</a>
+            <a href="https://discord.com" class="social-btn">Discord</a>
         </div>
     </section>
 
     <footer>
-        <p data-text="&copy; 2024 Luminous. All rights reserved.">&copy; 2024 Luminous. All rights reserved.</p>
+        <p>&copy; 2024 Luminous. All rights reserved.</p>
     </footer>
+
     <script>
         // Fade-in + Typewriter Effect
-        const fadeInElements = document.querySelectorAll('h1, p, .cta-btn, h2, a, footer p');
+        const fadeInElements = document.querySelectorAll('#hero h1, #hero p, .cta-btn');
 
         const fadeInObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
@@ -190,49 +213,47 @@
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
 
-                    if (!entry.target.dataset.typed) { // Prevent re-typing if already typed
+                    if (!entry.target.dataset.typed) {
                         typewriterEffect(entry.target, () => {
-                            fadeInObserver.unobserve(entry.target); // Unobserve after typing
+                            fadeInObserver.unobserve(entry.target);
                         });
-                        entry.target.dataset.typed = "true"; // Mark as typed
+                        entry.target.dataset.typed = "true";
                     }
                 }
             });
         });
 
         fadeInElements.forEach((element) => {
-            element.style.opacity = '0'; // Initial state
-            element.style.transform = 'translateY(50px)'; // Initial offset
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
             fadeInObserver.observe(element);
         });
 
         function typewriterEffect(element, callback) {
-            const text = element.dataset.text || element.textContent.trim(); // Save original text
-            element.dataset.text = text; // Store original text
-            element.textContent = ''; // Clear the text before typing
+            const text = element.dataset.text || element.textContent.trim();
+            element.dataset.text = text;
+            element.textContent = '';
             let i = 0;
-            const speed = 50; // Typing speed in ms
+            const speed = 50;
 
             function typeWriter() {
-                if (i <= text.length) {
-                    element.textContent = text.substring(0, i);
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
                     i++;
                     setTimeout(typeWriter, speed);
                 } else if (callback) {
-                    callback(); // Invoke callback after typing
+                    callback();
                 }
             }
 
             typeWriter();
         }
 
-        // Register Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
                 .then(() => console.log('Service Worker Registered'))
                 .catch(error => console.error('Service Worker Registration Failed:', error));
         }
     </script>
-
 </body>
 </html>

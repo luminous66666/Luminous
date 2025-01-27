@@ -62,37 +62,30 @@
         }
 
         /* Button Styles */
-        /* From Uiverse.io by mrtqzbek11 */ 
-button {
-  width: 165px;
-  height: 62px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 17px;
-  border-radius: 1rem;
-  border: none;
-  position: relative;
-  background: #100720;
-  transition: 0.1s;
-}
+        button {
+            all: unset;
+            display: inline-block;
+            padding: 0.8em 1.5em;
+            font-size: 1em;
+            font-weight: 600;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            border-radius: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(78, 42, 255, 0.4);
+        }
 
-button::after {
-  content: '';
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
-  filter: blur(15px);
-  z-index: -1;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
+        button:hover {
+            background: linear-gradient(135deg, #6a00b9, #320073);
+            transform: translateY(-3px);
+        }
 
-button:active {
-  transform: scale(0.9) rotate(3deg);
-  background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
-  transition: 0.5s;
-}
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 10px rgba(78, 42, 255, 0.2);
+        }
 
         /* About Me Section */
         #aboutme {
@@ -150,7 +143,9 @@ button:active {
         <h1>Welcome</h1>
         <h1>I am Luminous</h1>
         <p>Bringing Animation to Life</p>
-        <a href="animations.html" class="button">Explore</a>
+        <a href="animations.html">
+            <button>Explore</button>
+        </a>
     </div>
 
     <section id="aboutme">
@@ -161,8 +156,12 @@ button:active {
 
     <section id="joinme">
         <h2>Join Me</h2>
-        <a href="https://www.youtube.com/@Lumin0us6_mc" class="button">YouTube</a>
-        <a href="https://discord.gg/q7rprYeU" class="button">Discord</a>
+        <a href="https://www.youtube.com/@Lumin0us6_mc" target="_blank">
+            <button>YouTube</button>
+        </a>
+        <a href="https://discord.gg/q7rprYeU" target="_blank">
+            <button>Discord</button>
+        </a>
     </section>
 
     <footer>
